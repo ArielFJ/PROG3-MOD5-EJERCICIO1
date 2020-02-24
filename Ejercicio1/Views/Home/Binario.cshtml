@@ -1,0 +1,23 @@
+﻿@model NumsViewModel
+
+    <div class="col-xs-12">
+        <div class="center-block align-items-center justify-content-center">
+
+            <table class="table">
+                <tr>
+                    <th>Números Ingresados en Decimal</th>
+                    @foreach (var item in Model.NumerosDecimales)
+                    {
+                        <td>@item</td>
+                    }
+                </tr>
+                <tr>
+                    <th>Números Ingresados en Binario</th>
+                    @foreach (var item in Model.NumerosBinarios)
+                    {
+                        <td>@item</td>
+                    }
+                </tr>
+            </table>
+        </div>
+    </div>

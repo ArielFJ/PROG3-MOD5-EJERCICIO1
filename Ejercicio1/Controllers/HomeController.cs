@@ -4,34 +4,55 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Ejercicio1.Models;
 
 namespace Ejercicio1.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult Index(NumsViewModel model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Binario", model);
+            }
+            return View(model);
+        }
+
+        public IActionResult Binario(NumsViewModel model)
+        {
+            foreach(int n in model.NumerosDecimales)
+            {
+                model.NumerosBinarios.Add(DecimalABinario(n));
+            }
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private string DecimalABinario(int n)
+        {
+            string bin = "";
+            while (true)
+            {
+                if (n % 2 != 0)
+                    bin = "1" + bin;
+                else
+                    bin = "0" + bin;
+                n /= 2;
+                if (n <= 0) break;
+            }
+            return bin;
         }
     }
 }
