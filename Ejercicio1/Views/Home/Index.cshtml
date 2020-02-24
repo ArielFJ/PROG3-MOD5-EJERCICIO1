@@ -1,0 +1,24 @@
+﻿@model NumsViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="text-center">
+        <h1 class="display-4">Introduzca 10 números</h1>
+        <form class="form-horizontal" method="post" asp-controller="Home" asp-action="Index">
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="container-fluid" style="margin-left:10em;">
+                <div class="float-left col-md-6">
+                    <partial name="_ListaInputs" view-data='@new ViewDataDictionary(ViewData) { { "i", 0 } };' />
+                </div>
+
+                <div class="float-right col-md-6">
+                    <partial name="_ListaInputs" view-data='@new ViewDataDictionary(ViewData) { { "i", 5 } };' />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+
+        </form>
+    </div>
