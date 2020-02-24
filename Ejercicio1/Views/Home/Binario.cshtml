@@ -1,18 +1,21 @@
 ﻿@model NumsViewModel
+@{
+    ViewData["Title"] = "Binario";
+}
 
-    <div class="col-xs-12">
-        <div class="center-block align-items-center justify-content-center">
-
-            <table class="table">
+    <div class="col-xs-12 mt-xl-5">
+        <div class="center-block align-items-center ">
+            <h1 class="display-3">Números Desplegados</h1>
+            <table class="table mt-xl-5" cellpadding="5">
                 <tr>
-                    <th>Números Ingresados en Decimal</th>
+                    <th><h4>Números Ingresados en Decimal</h4></th>
                     @foreach (var item in Model.NumerosDecimales)
                     {
                         <td>@item</td>
                     }
                 </tr>
-                <tr>
-                    <th>Números Ingresados en Binario</th>
+                <tr class="mt-xl-5">
+                    <th><h4>Números Ingresados en Binario</h4></th>
                     @foreach (var item in Model.NumerosBinarios)
                     {
                         <td>@item</td>
